@@ -64,7 +64,7 @@ pagination_dir: page
 avatar: /uploads/avatar.png
 
 #duoshuo_shortname
-duoshuo_shortname: shelia.site
+duoshuo_shortname: shelia
 duoshuo_hotartical: true;
 
 #baidu_analytics
