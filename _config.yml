@@ -66,6 +66,7 @@ avatar: /uploads/avatar.png
 #duoshuo_shortname
 duoshuo_shortname: shelia
 duoshuo_hotartical: true;
+duoshuo_share: true
 
 #baidu_analytics
 baidu_analytics: 6c53904ab9cd5c93c2edc64c926d8e77
@@ -76,8 +77,6 @@ leancloud_visitors:
   app_id: EeeSbJkweEtxtOPCPdXtTo1v-gzGzoHsz
   app_key: cAbGsXjLk2HaRJb3Sd6BcChu
 
-#JiaThis 分享服务
-  JiaThis: true
 
 #Swiftype搜索服务
 
