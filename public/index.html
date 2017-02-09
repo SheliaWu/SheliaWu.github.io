@@ -367,83 +367,19 @@
       
         
           
-            <blockquote>
-<p>Hexo是一个快速、简介且高效的博客框架，配置了多种主题，定制自己风格的博客。PS 我的博客地址传送门在这：<a href="http://shelia.site/">shelia’s blog</a></p>
-</blockquote>
-<p>[TOC]</p>
-<h1 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h1><h2 id="安装Git-Bash"><a href="#安装Git-Bash" class="headerlink" title="安装Git Bash"></a>安装Git Bash</h2><p>github是程序员的标配，因为使用的是Windows系统，所以下了个github的客户端。里面包含了Git Bash和图形界面的Git GUI,使用哪个看个人习惯。建议使用GitBash，可以在日常的操作中熟悉常用指令。</p>
-<p>廖雪峰的Git教程有提供国内的镜像下载，或者可以到这个地址下载<a href="https://desktop.github.com/。" target="_blank" rel="external">https://desktop.github.com/。</a></p>
-<h2 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h2><p>Nodejs我是直接下载的客户端，直接用搜索引擎搜索一下就能找到。<br><strong>注意：</strong>安装时一路next的时候请选择Add to Path方式安装。</p>
-<h2 id="安装HEXO"><a href="#安装HEXO" class="headerlink" title="安装HEXO"></a>安装HEXO</h2><p>所有必须的软件安装后，打开终端（随你选择）输入以下命令安装hexo：</p>
-<blockquote>
-<p>npm install -g hexo-cli</p>
-</blockquote>
-<p><strong>注意：</strong>安装的时候如果出现warming不要管它之后也可以用，如果是ERROR的话可能需要你用管理员权限运行终端来安装。</p>
-<p>为了测试hexo是否正常安装，我们可以通过以下命令来测试（我的所有命令都是在管理员权限下的）。</p>
-<p>在你喜欢的任意一个地方，新建一个博客文件夹：</p>
-<blockquote>
-<p>hexo init hexoblog</p>
-</blockquote>
-<p>安装依赖：</p>
-<blockquote>
-<p>npm install</p>
-</blockquote>
-<p>本地运行测试</p>
-<blockquote>
-<p>hexo s</p>
-</blockquote>
-<p>如果成功会打印:Hexo is running at  <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a>. Press Ctrl+C to stop,再打开你的浏览器输入localhost:4000地址就可以看到你的博客了。</p>
-<h1 id="在github上创建GithubPages"><a href="#在github上创建GithubPages" class="headerlink" title="在github上创建GithubPages"></a>在github上创建GithubPages</h1><h2 id="配置SSH"><a href="#配置SSH" class="headerlink" title="配置SSH"></a>配置SSH</h2><p>github本地和远程连接有两种方式，一种是通过https，另一种是SSH，推荐后一种。</p>
-<p>配置SSH的步骤如下：</p>
-<ul>
-<li><p>在本地生成公钥和私钥,命令如下：</p>
-<blockquote>
-<p>ssh-keygen</p>
-</blockquote>
-</li>
-<li><p>找到你保存公钥和私钥的文件夹，用记事本打开之前生成的id_rsa.pub文件,复制里面的公钥字符串。打开你的github网站，在setting里面的SSH keys，再点击Add SSH key 按钮添加，title域随便命名，Key域粘贴之前复制的内容。</p>
-</li>
-</ul>
-<h2 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h2><p>github有专门的一种格式来创建博客仓库的。新建一个仓库，仓库名为:<strong>youusername.github.io</strong>.</p>
-<h1 id="建站"><a href="#建站" class="headerlink" title="建站"></a>建站</h1><h2 id="克隆远程仓库"><a href="#克隆远程仓库" class="headerlink" title="克隆远程仓库"></a>克隆远程仓库</h2><p>为了管理方便，建议再一个分支上存放hexo博客的源代码，master分支用来发布静态博客，步骤如下：</p>
-<ul>
-<li>在你的仓库中新建一个分支，我命名为hexo，然后切换到仓库的settitng的branch选项设置为默认分支。</li>
-<li>打开Git Bash，复制远程仓库<blockquote>
-<p>git clone git@github.com:username/username.github.io.git</p>
-</blockquote>
-</li>
-<li>克隆好远程仓库我们就可以开始建站了。在执行其它命令前，把根目录下的.git文件夹复制到另一个地方保存先，因为 hexo init命令会覆盖掉它。</li>
-</ul>
-<h2 id="搭建hexo博客"><a href="#搭建hexo博客" class="headerlink" title="搭建hexo博客"></a>搭建hexo博客</h2><p>打开终端，依次执行以下命令：</p>
-<blockquote>
-<p>npm install hexo<br>hexo init<br>hexo install</p>
-</blockquote>
-<p>复制之前保存在另一个地方的.git文件夹再放到根目录下。</p>
-<blockquote>
-<p>npm install hexo-deployer-git</p>
-</blockquote>
-<p><strong>注意：</strong>这些命令都是工作在hexo分支上，以后也是。</p>
-<p>修改_config.yml中的deploy参数，分支应为master，可以按照如下设置：</p>
-<blockquote>
-<p>deploy:<br>&nbsp;&nbsp;&nbsp;&nbsp;type:git<br>&nbsp;&nbsp;&nbsp;&nbsp;typerepo:（复制你的项目地址到这里）<br>&nbsp;&nbsp;&nbsp;&nbsp;typebranch:master</p>
-</blockquote>
-<ul>
-<li>依次执行 <code>git add .</code>,<code>git commit -m &quot;...&quot;</code>,<code>git push origin hexo</code>提交网站相关的文件</li>
-<li>执行<code>hexo g -d</code>生成网站并部署到GitHub上。</li>
-</ul>
-<p>此方法由知乎上的一位网友提供，链接在此：<a href="https://www.zhihu.com/question/21193762" target="_blank" rel="external">hexo分支管理</a>， 必须记得复制.git文件夹不然本地仓库就失效了。</p>
-<h2 id="配置个人信息"><a href="#配置个人信息" class="headerlink" title="配置个人信息"></a>配置个人信息</h2><p>在根目录下有一个<code>_confug.yml</code>文件夹，在里面你可以通过相关字段来设置自己的个人信息。</p>
-<h2 id="配置主题"><a href="#配置主题" class="headerlink" title="配置主题"></a>配置主题</h2><p>我的博客使用的主题是nexT，网上有具体的使用文档 <a href="http://theme-next.iissnan.com/%20%E2%80%9CNexT%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3%E4%BC%A0%E9%80%81%E9%97%A8%E2%80%9D" target="_blank" rel="external">NexT使用文档传送门</a></p>
-<p>同时在文档中也介绍了如何安装第三方插件。</p>
-<h1 id="添加域名"><a href="#添加域名" class="headerlink" title="添加域名"></a>添加域名</h1><p>添加域名有三个步骤：</p>
-<ul>
-<li>首先现在万网上买一个域名</li>
-<li>下一步注册DNSpod，然后添加域名，添加记录即可</li>
-<li>返回在你的仓库setting里面绑定域名，它会生成一个CNAME文件。</li>
-</ul>
-<p><strong>注意：</strong>我在绑定域名后在本地重新提交代码部署静态博客时，CNAME文件总是被覆盖。解决办法是下载CNAME文件，放到本地站点目录下的source文件夹，注意CNAME是无格式的，不然会被部署到网站上。</p>
-
           
+Hexo是一个快速、简介且高效的博客框架，配置了多种主题，定制自己风格的博客。PS 我的博客地址传送门在这：shelia’s blog
+
+[TOC]
+前期准备安装Git Bashgithub是程序员的标配，因为使用的是Windows系统，所以下了个github的客户端。里面包含了Git Bash和
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/02/08/HEXO-GithubPages搭建博客指南/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -571,17 +507,15 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
+          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/02/08/hello-world/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
