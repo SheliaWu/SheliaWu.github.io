@@ -1,8 +1,9 @@
 ﻿---
-title: AngularJS学习笔记：Scope的理解
+title: AngularJS学习笔记一
 date: 2017-02-12 19:50:26
 tags: AngularJS
 ---
+
 在学习AngularJS的时候，说到Scope(作用域) 是应用在 HTML (视图) 和 JavaScript (控制器)之间的纽带。Scope 是一个对象，有可用的方法和属。但还是不太搞得明白，感觉有点像是JS的原型继承。所以阅读了相关文章，总结如下。
 
 # Scope的本质
