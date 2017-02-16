@@ -1,0 +1,781 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="AngularJS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="本文摘录自玩转AngularJS的作用域
+
+每当一个指令被创建时，都会有一个选择，是继承自己的父作用域还是创建一个新的自己的作用域。AngularJS指令的作用域有三种选择，分别是false，true，{}，默认情况下是false。
+scope = false这种情况表示，在指令模板中直接使用父作用域中的变量。当我们在指令更改父作用域的方法和属性，父作用域绑定的数据也发生了响应的变化。
+scop">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AngularJS学习笔记二">
+<meta property="og:url" content="http://shelia.site/2017/02/14/AngularJS学习笔记二/index.html">
+<meta property="og:site_name" content="shelia's blog">
+<meta property="og:description" content="本文摘录自玩转AngularJS的作用域
+
+每当一个指令被创建时，都会有一个选择，是继承自己的父作用域还是创建一个新的自己的作用域。AngularJS指令的作用域有三种选择，分别是false，true，{}，默认情况下是false。
+scope = false这种情况表示，在指令模板中直接使用父作用域中的变量。当我们在指令更改父作用域的方法和属性，父作用域绑定的数据也发生了响应的变化。
+scop">
+<meta property="og:updated_time" content="2017-02-13T16:01:29.003Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AngularJS学习笔记二">
+<meta name="twitter:description" content="本文摘录自玩转AngularJS的作用域
+
+每当一个指令被创建时，都会有一个选择，是继承自己的父作用域还是创建一个新的自己的作用域。AngularJS指令的作用域有三种选择，分别是false，true，{}，默认情况下是false。
+scope = false这种情况表示，在指令模板中直接使用父作用域中的变量。当我们在指令更改父作用域的方法和属性，父作用域绑定的数据也发生了响应的变化。
+scop">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://shelia.site/2017/02/14/AngularJS学习笔记二/"/>
+
+
+
+
+
+  <title> AngularJS学习笔记二 | shelia's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6c53904ab9cd5c93c2edc64c926d8e77";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">shelia's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">学习笔记</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://shelia.site/2017/02/14/AngularJS学习笔记二/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="shelia">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="shelia's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="shelia's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                AngularJS学习笔记二
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-14T00:10:56+08:00">
+                2017-02-14
+              </time>
+            
+
+            
+
+            
+          </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/14/AngularJS学习笔记二/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/14/AngularJS学习笔记二/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>本文摘录自<a href="https://segmentfault.com/a/1190000002773689" target="_blank" rel="external">玩转AngularJS的作用域</a></p>
+</blockquote>
+<p>每当一个指令被创建时，都会有一个选择，是继承自己的父作用域还是创建一个新的自己的作用域。AngularJS指令的作用域有三种选择，分别是false，true，{}，默认情况下是false。</p>
+<h1 id="scope-false"><a href="#scope-false" class="headerlink" title="scope = false"></a>scope = false</h1><p>这种情况表示，在指令模板中直接使用父作用域中的变量。<br>当我们在指令更改父作用域的方法和属性，父作用域绑定的数据也发生了响应的变化。</p>
+<h1 id="scope-true"><a href="#scope-true" class="headerlink" title="scope = true"></a>scope = true</h1><p>当把scope属性设置为true时，这表明我们创建的指令要创建一个新的作用域，这个作用域继承自我们的父作用域。但是改变指令内的数据，只有指令的作用域发生了变化，父作用域数据并没有发生变化</p>
+<ul>
+<li>当我们将scope设置为true的时候，我们就新创建了一个作用域，只不过这个作用域是继承了我们的父作用域；我觉得可以这样理解，我们新创建的作用域是一个新的作用域，只不过在初始化的时候，用了父作用域的属性和方法去填充我们这个新的作用域。它和父作用域不是同一个作用域。</li>
+<li>当我们将scope设置为false的时候,我们创建的指令和父作用域（其实是同一个作用域）共享同一个model模型，所以在指令中修改模型数据，它会反映到父作用域的模型中。</li>
+</ul>
+<p>这就是两者继承父作用域的区别。</p>
+<h1 id="scope"><a href="#scope" class="headerlink" title="scope={}"></a>scope={}</h1><p>我们将scope设置为{}时，意味着我们创建的一个新的与父作用域隔离的新的作用域，这使我们在不知道外部环境的情况下，就可以正常工作，不依赖外部环境。</p>
+<p>实例代码如下：</p>
+<pre><code>    angular.module(&quot;MyApp&quot;, [])
+    .controller(&quot;MyController&quot;, function ($scope) {
+    $scope.name = &quot;dreamapple&quot;;
+    $scope.age = 20;
+    $scope.changeAge = function(){
+        $scope.age = 0;
+    }
+})
+    .directive(&quot;myDirective&quot;, function () {
+    var obj = {
+        restrict: &quot;AE&quot;,
+        scope: {
+            name: &apos;@myName&apos;,
+            age: &apos;=&apos;,
+            changeAge: &apos;&amp;changeMyAge&apos;
+        },
+        replace: true,
+        template: &quot;&lt;div class=&apos;my-directive&apos;&gt;&quot; +
+            &quot;&lt;h3&gt;下面部分是我们创建的指令生成的&lt;/h3&gt;&quot; +
+            &quot;我的名字是：&lt;span ng-bind=&apos;name&apos;&gt;&lt;/span&gt;&lt;br/&gt;&quot; +
+            &quot;我的年龄是：&lt;span ng-bind=&apos;age&apos;&gt;&lt;/span&gt;&lt;br/&gt;&quot; +
+            &quot;在这里修改名字：&lt;input type=&apos;text&apos; ng-model=&apos;name&apos;&gt;&lt;br/&gt;&quot; +
+            &quot;&lt;button ng-click=&apos;changeAge()&apos;&gt;修改年龄&lt;/button&gt;&quot; +
+            &quot; &lt;/div&gt;&quot;
+    }
+    return obj;
+});
+</code></pre><p>我们使用了隔离的作用域，不代表我们不可以使用父作用域的属性和方法。我们可以通过向scope的{}中传入特殊的前缀标识符（即prefix），来进行数据的绑定。在创建了隔离的作用域，我们可以通过@,&amp;,=引用应用指令的元素的属性。但是注意要使用驼峰命名法。</p>
+<h2 id=""><a href="#" class="headerlink" title="@"></a>@</h2><p>这是一个单项绑定的前缀标识符。<br>使用方法：在元素中使用属性，好比这样<code>&lt;div my-directive my-name=&quot;&quot;&gt;&lt;/div&gt;</code>，注意，属性的名字要用-将两个单词连接，因为是数据的单项绑定所以要通过使用两个大括号来绑定数据。</p>
+<h2 id="amp"><a href="#amp" class="headerlink" title="&amp;"></a>&amp;</h2><p>这是一个双向数据绑定前缀标识符。<br>使用方法：在元素中使用属性，好比这样<code>&lt;div my-directive age=&quot;age&quot;&gt;&lt;/div&gt;</code>,注意，数据的双向绑定要通过=前缀标识符实现，所以不可以使用两个大括号。</p>
+<h2 id="-1"><a href="#-1" class="headerlink" title="="></a>=</h2><p>这是一个绑定函数方法的前缀标识符<br>使用方法：在元素中使用属性，好比这样<code>&lt;div my-directive change-my-age=&quot;changeAge()&quot;&gt;&lt;/div&gt;</code>，注意，属性的名字要用<code>-</code>将多个个单词连接。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AngularJS/" rel="tag"># AngularJS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/14/js双重否定的小知识点/" rel="next" title="js中`!!`的小知识点">
+                <i class="fa fa-chevron-left"></i> js中`!!`的小知识点
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/02/14/AngularJS学习笔记二/"
+     data-title="AngularJS学习笔记二"
+     data-content=""
+     data-url="http://shelia.site/2017/02/14/AngularJS学习笔记二/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/14/AngularJS学习笔记二/"
+           data-title="AngularJS学习笔记二" data-url="http://shelia.site/2017/02/14/AngularJS学习笔记二/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="shelia" />
+          <p class="site-author-name" itemprop="name">shelia</p>
+          <p class="site-description motion-element" itemprop="description">Actions do lead</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#scope-false"><span class="nav-number">1.</span> <span class="nav-text">scope = false</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#scope-true"><span class="nav-number">2.</span> <span class="nav-text">scope = true</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#scope"><span class="nav-number">3.</span> <span class="nav-text">scope={}</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">3.1.</span> <span class="nav-text">@</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#amp"><span class="nav-number">3.2.</span> <span class="nav-text">&</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#-1"><span class="nav-number">3.3.</span> <span class="nav-text">=</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shelia</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"shelia"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
