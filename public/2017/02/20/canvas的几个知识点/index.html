@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="AngularJS," />
+  <meta name="keywords" content="HTML5," />
 
 
 
@@ -87,28 +87,28 @@
 
 
 
-<meta name="description" content="本文摘录自玩转AngularJS的作用域
-
-每当一个指令被创建时，都会有一个选择，是继承自己的父作用域还是创建一个新的自己的作用域。AngularJS指令的作用域有三种选择，分别是false，true，{}，默认情况下是false。
-scope = false这种情况表示，在指令模板中直接使用父作用域中的变量。当我们在指令更改父作用域的方法和属性，父作用域绑定的数据也发生了响应的变化。
-scop">
+<meta name="description" content="今天重新复习了HTML5，对canvas标签理解加深了一点，有几个知识点想记下来以免忘记。
+绘制矩形绘制矩形 context.fillRect(x,y,width,height) strokeRect(x,y,width,height)
+x:矩形起点横坐标（坐标原点为canvas的左上角，当然确切的来说是原始原点，后面写到变形的时候你就懂了，现在暂时不用关系）
+y:矩形起点纵坐标
+width:矩形">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AngularJS学习笔记二">
-<meta property="og:url" content="http://shelia.site/2017/02/14/AngularJS学习笔记二/index.html">
+<meta property="og:title" content="canvas的几个知识点">
+<meta property="og:url" content="http://shelia.site/2017/02/20/canvas的几个知识点/index.html">
 <meta property="og:site_name" content="shelia's blog">
-<meta property="og:description" content="本文摘录自玩转AngularJS的作用域
-
-每当一个指令被创建时，都会有一个选择，是继承自己的父作用域还是创建一个新的自己的作用域。AngularJS指令的作用域有三种选择，分别是false，true，{}，默认情况下是false。
-scope = false这种情况表示，在指令模板中直接使用父作用域中的变量。当我们在指令更改父作用域的方法和属性，父作用域绑定的数据也发生了响应的变化。
-scop">
-<meta property="og:updated_time" content="2017-02-13T16:01:29.003Z">
+<meta property="og:description" content="今天重新复习了HTML5，对canvas标签理解加深了一点，有几个知识点想记下来以免忘记。
+绘制矩形绘制矩形 context.fillRect(x,y,width,height) strokeRect(x,y,width,height)
+x:矩形起点横坐标（坐标原点为canvas的左上角，当然确切的来说是原始原点，后面写到变形的时候你就懂了，现在暂时不用关系）
+y:矩形起点纵坐标
+width:矩形">
+<meta property="og:updated_time" content="2017-02-20T14:18:27.752Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AngularJS学习笔记二">
-<meta name="twitter:description" content="本文摘录自玩转AngularJS的作用域
-
-每当一个指令被创建时，都会有一个选择，是继承自己的父作用域还是创建一个新的自己的作用域。AngularJS指令的作用域有三种选择，分别是false，true，{}，默认情况下是false。
-scope = false这种情况表示，在指令模板中直接使用父作用域中的变量。当我们在指令更改父作用域的方法和属性，父作用域绑定的数据也发生了响应的变化。
-scop">
+<meta name="twitter:title" content="canvas的几个知识点">
+<meta name="twitter:description" content="今天重新复习了HTML5，对canvas标签理解加深了一点，有几个知识点想记下来以免忘记。
+绘制矩形绘制矩形 context.fillRect(x,y,width,height) strokeRect(x,y,width,height)
+x:矩形起点横坐标（坐标原点为canvas的左上角，当然确切的来说是原始原点，后面写到变形的时候你就懂了，现在暂时不用关系）
+y:矩形起点纵坐标
+width:矩形">
 
 
 
@@ -136,13 +136,13 @@ scop">
 
 
 
-  <link rel="canonical" href="http://shelia.site/2017/02/14/AngularJS学习笔记二/"/>
+  <link rel="canonical" href="http://shelia.site/2017/02/20/canvas的几个知识点/"/>
 
 
 
 
 
-  <title> AngularJS学习笔记二 | shelia's blog </title>
+  <title> canvas的几个知识点 | shelia's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -289,7 +289,7 @@ scop">
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://shelia.site/2017/02/14/AngularJS学习笔记二/">
+  <link itemprop="mainEntityOfPage" href="http://shelia.site/2017/02/20/canvas的几个知识点/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="shelia">
@@ -313,7 +313,7 @@ scop">
             
             
               
-                AngularJS学习笔记二
+                canvas的几个知识点
               
             
           </h1>
@@ -328,8 +328,8 @@ scop">
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-14T00:10:56+08:00">
-                2017-02-14
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-20T22:08:14+08:00">
+                2017-02-20
               </time>
             
 
@@ -346,8 +346,8 @@ scop">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/02/14/AngularJS学习笔记二/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/14/AngularJS学习笔记二/" itemprop="commentCount"></span>
+                <a href="/2017/02/20/canvas的几个知识点/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/20/canvas的几个知识点/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -373,50 +373,32 @@ scop">
       
 
       
-        <blockquote>
-<p>本文摘录自<a href="https://segmentfault.com/a/1190000002773689" target="_blank" rel="external">玩转AngularJS的作用域</a></p>
-</blockquote>
-<p>每当一个指令被创建时，都会有一个选择，是继承自己的父作用域还是创建一个新的自己的作用域。AngularJS指令的作用域有三种选择，分别是false，true，{}，默认情况下是false。</p>
-<h1 id="scope-false"><a href="#scope-false" class="headerlink" title="scope = false"></a>scope = false</h1><p>这种情况表示，在指令模板中直接使用父作用域中的变量。<br>当我们在指令更改父作用域的方法和属性，父作用域绑定的数据也发生了响应的变化。</p>
-<h1 id="scope-true"><a href="#scope-true" class="headerlink" title="scope = true"></a>scope = true</h1><p>当把scope属性设置为true时，这表明我们创建的指令要创建一个新的作用域，这个作用域继承自我们的父作用域。但是改变指令内的数据，只有指令的作用域发生了变化，父作用域数据并没有发生变化</p>
+        <p>今天重新复习了HTML5，对canvas标签理解加深了一点，有几个知识点想记下来以免忘记。</p>
+<h1 id="绘制矩形"><a href="#绘制矩形" class="headerlink" title="绘制矩形"></a>绘制矩形</h1><p>绘制矩形 context.fillRect(x,y,width,height) strokeRect(x,y,width,height)</p>
+<p>x:矩形起点横坐标（坐标原点为canvas的左上角，当然确切的来说是原始原点，后面写到变形的时候你就懂了，现在暂时不用关系）</p>
+<p>y:矩形起点纵坐标</p>
+<p>width:矩形长度</p>
+<p>height:矩形高度</p>
+<h1 id="绘制圆弧"><a href="#绘制圆弧" class="headerlink" title="绘制圆弧"></a>绘制圆弧</h1><p>圆弧context.arc(x, y, radius, starAngle,endAngle, anticlockwise)</p>
+<p>x:圆心的x坐标</p>
+<p>y:圆心的y坐标</p>
+<p>straAngle:开始角度</p>
+<p>endAngle:结束角度</p>
+<p>anticlockwise:是否逆时针（true）为逆时针，(false)为顺时针</p>
+<p>ps：经过试验证明书本上ture是顺时针，false是逆时针是错误的，而且无论是逆时针还是顺时针，角度都沿着顺时针扩大。</p>
+<h1 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h1><p>这是今天理解的重点。</p>
 <ul>
-<li>当我们将scope设置为true的时候，我们就新创建了一个作用域，只不过这个作用域是继承了我们的父作用域；我觉得可以这样理解，我们新创建的作用域是一个新的作用域，只不过在初始化的时候，用了父作用域的属性和方法去填充我们这个新的作用域。它和父作用域不是同一个作用域。</li>
-<li>当我们将scope设置为false的时候,我们创建的指令和父作用域（其实是同一个作用域）共享同一个model模型，所以在指令中修改模型数据，它会反映到父作用域的模型中。</li>
+<li>系统默认在绘制第一个路径的开始点为beginPath</li>
+<li>如果画完前面的路径没有重新指定beginPath，那么画第其他路径的时候会将前面最近指定的beginPath后的全部路径重新绘制</li>
+<li>每次调用context.fill（）的时候会自动把当次绘制的路径的开始点和结束点相连，接着填充封闭的部分。</li>
 </ul>
-<p>这就是两者继承父作用域的区别。</p>
-<h1 id="scope"><a href="#scope" class="headerlink" title="scope={}"></a>scope={}</h1><p>我们将scope设置为{}时，意味着我们创建的一个新的与父作用域隔离的新的作用域，这使我们在不知道外部环境的情况下，就可以正常工作，不依赖外部环境。</p>
-<p>实例代码如下：</p>
-<pre><code>    angular.module(&quot;MyApp&quot;, [])
-    .controller(&quot;MyController&quot;, function ($scope) {
-    $scope.name = &quot;dreamapple&quot;;
-    $scope.age = 20;
-    $scope.changeAge = function(){
-        $scope.age = 0;
-    }
-})
-    .directive(&quot;myDirective&quot;, function () {
-    var obj = {
-        restrict: &quot;AE&quot;,
-        scope: {
-            name: &apos;@myName&apos;,
-            age: &apos;=&apos;,
-            changeAge: &apos;&amp;changeMyAge&apos;
-        },
-        replace: true,
-        template: &quot;&lt;div class=&apos;my-directive&apos;&gt;&quot; +
-            &quot;&lt;h3&gt;下面部分是我们创建的指令生成的&lt;/h3&gt;&quot; +
-            &quot;我的名字是：&lt;span ng-bind=&apos;name&apos;&gt;&lt;/span&gt;&lt;br/&gt;&quot; +
-            &quot;我的年龄是：&lt;span ng-bind=&apos;age&apos;&gt;&lt;/span&gt;&lt;br/&gt;&quot; +
-            &quot;在这里修改名字：&lt;input type=&apos;text&apos; ng-model=&apos;name&apos;&gt;&lt;br/&gt;&quot; +
-            &quot;&lt;button ng-click=&apos;changeAge()&apos;&gt;修改年龄&lt;/button&gt;&quot; +
-            &quot; &lt;/div&gt;&quot;
-    }
-    return obj;
-});
-</code></pre><p>我们使用了隔离的作用域，不代表我们不可以使用父作用域的属性和方法。我们可以通过向scope的{}中传入特殊的前缀标识符（即prefix），来进行数据的绑定。在创建了隔离的作用域，我们可以通过@,&amp;,=引用应用指令的元素的属性。但是注意要使用驼峰命名法。</p>
-<h2 id=""><a href="#" class="headerlink" title="@"></a>@</h2><p>这是一个单项绑定的前缀标识符。<br>使用方法：在元素中使用属性，好比这样<code>&lt;div my-directive my-name=&quot;&quot;&gt;&lt;/div&gt;</code>，注意，属性的名字要用-将两个单词连接，因为是数据的单项绑定所以要通过使用两个大括号来绑定数据。</p>
-<h2 id="amp"><a href="#amp" class="headerlink" title="&amp;"></a>&amp;</h2><p>这是一个双向数据绑定前缀标识符。<br>使用方法：在元素中使用属性，好比这样<code>&lt;div my-directive age=&quot;age&quot;&gt;&lt;/div&gt;</code>,注意，数据的双向绑定要通过=前缀标识符实现，所以不可以使用两个大括号。</p>
-<h2 id="-1"><a href="#-1" class="headerlink" title="="></a>=</h2><p>这是一个绑定函数方法的前缀标识符<br>使用方法：在元素中使用属性，好比这样<code>&lt;div my-directive change-my-age=&quot;changeAge()&quot;&gt;&lt;/div&gt;</code>，注意，属性的名字要用<code>-</code>将多个个单词连接。</p>
+<h1 id="渐变"><a href="#渐变" class="headerlink" title="渐变"></a>渐变</h1><p>1.线性渐变 var lg= context.createLinearGradient(xStart,yStart,xEnd,yEnd)<br>2.线性渐变颜色lg.addColorStop(offset,color)</p>
+<p>xstart:渐变开始点x坐标</p>
+<p>ystart:渐变开始点y坐标</p>
+<p>xEnd:渐变结束点x坐标</p>
+<p>yEnd:渐变结束点y坐标</p>
+<p>offset:设定的颜色离渐变结束点的偏移量(0~1)</p>
+<p>color:绘制时要使用的颜色</p>
 
       
     </div>
@@ -440,7 +422,7 @@ scop">
       
         <div class="post-tags">
           
-            <a href="/tags/AngularJS/" rel="tag"># AngularJS</a>
+            <a href="/tags/HTML5/" rel="tag"># HTML5</a>
           
         </div>
       
@@ -453,8 +435,8 @@ scop">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/14/js双重否定的小知识点/" rel="next" title="js中`!!`的小知识点">
-                <i class="fa fa-chevron-left"></i> js中`!!`的小知识点
+              <a href="/2017/02/19/setTimeout在循环中/" rel="next" title="setTimeout在循环中">
+                <i class="fa fa-chevron-left"></i> setTimeout在循环中
               </a>
             
           </div>
@@ -462,10 +444,6 @@ scop">
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/16/Less学习笔记一/" rel="prev" title="Less学习笔记一">
-                Less学习笔记一 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -480,10 +458,10 @@ scop">
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2017/02/14/AngularJS学习笔记二/"
-     data-title="AngularJS学习笔记二"
+        <div class="ds-share flat" data-thread-key="2017/02/20/canvas的几个知识点/"
+     data-title="canvas的几个知识点"
      data-content=""
-     data-url="http://shelia.site/2017/02/14/AngularJS学习笔记二/">
+     data-url="http://shelia.site/2017/02/20/canvas的几个知识点/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -513,8 +491,8 @@ scop">
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/02/14/AngularJS学习笔记二/"
-           data-title="AngularJS学习笔记二" data-url="http://shelia.site/2017/02/14/AngularJS学习笔记二/">
+      <div class="ds-thread" data-thread-key="2017/02/20/canvas的几个知识点/"
+           data-title="canvas的几个知识点" data-url="http://shelia.site/2017/02/20/canvas的几个知识点/">
       </div>
     
   </div>
@@ -607,7 +585,7 @@ scop">
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#scope-false"><span class="nav-number">1.</span> <span class="nav-text">scope = false</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#scope-true"><span class="nav-number">2.</span> <span class="nav-text">scope = true</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#scope"><span class="nav-number">3.</span> <span class="nav-text">scope={}</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">3.1.</span> <span class="nav-text">@</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#amp"><span class="nav-number">3.2.</span> <span class="nav-text">&</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#-1"><span class="nav-number">3.3.</span> <span class="nav-text">=</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#绘制矩形"><span class="nav-number">1.</span> <span class="nav-text">绘制矩形</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#绘制圆弧"><span class="nav-number">2.</span> <span class="nav-text">绘制圆弧</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#路径"><span class="nav-number">3.</span> <span class="nav-text">路径</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#渐变"><span class="nav-number">4.</span> <span class="nav-text">渐变</span></a></li></ol></div>
             
 
           </div>
