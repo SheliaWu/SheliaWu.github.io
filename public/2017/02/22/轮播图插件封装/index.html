@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="HTML5," />
+  <meta name="keywords" content="jQuery," />
 
 
 
@@ -87,28 +87,31 @@
 
 
 
-<meta name="description" content="今天重新复习了HTML5，对canvas标签理解加深了一点，有几个知识点想记下来以免忘记。
-绘制矩形绘制矩形 context.fillRect(x,y,width,height) strokeRect(x,y,width,height)
-x:矩形起点横坐标（坐标原点为canvas的左上角，当然确切的来说是原始原点，后面写到变形的时候你就懂了，现在暂时不用关系）
-y:矩形起点纵坐标
-width:矩形">
+<meta name="description" content="之前写了一个轮播图的功能实现，给前辈看了下代码，收获很多。总结了一下自己之前代码的问题和讨论一下jQuery插件封装的套路。
+
+之前代码的坑
+reset style自己在写css时写的reset针对了所有*，有一些没必要reset的会因此    也去查找，避免耗费资源以后千万记得针对需要的标签做reset就可以，    网络上也有很多reset的样式。
+
+命名规范在写HTML的class时使用-">
 <meta property="og:type" content="article">
-<meta property="og:title" content="canvas的几个知识点">
-<meta property="og:url" content="http://shelia.site/2017/02/20/canvas的几个知识点/index.html">
+<meta property="og:title" content="轮播图插件封装">
+<meta property="og:url" content="http://shelia.site/2017/02/22/轮播图插件封装/index.html">
 <meta property="og:site_name" content="shelia's blog">
-<meta property="og:description" content="今天重新复习了HTML5，对canvas标签理解加深了一点，有几个知识点想记下来以免忘记。
-绘制矩形绘制矩形 context.fillRect(x,y,width,height) strokeRect(x,y,width,height)
-x:矩形起点横坐标（坐标原点为canvas的左上角，当然确切的来说是原始原点，后面写到变形的时候你就懂了，现在暂时不用关系）
-y:矩形起点纵坐标
-width:矩形">
-<meta property="og:updated_time" content="2017-02-20T14:18:27.752Z">
+<meta property="og:description" content="之前写了一个轮播图的功能实现，给前辈看了下代码，收获很多。总结了一下自己之前代码的问题和讨论一下jQuery插件封装的套路。
+
+之前代码的坑
+reset style自己在写css时写的reset针对了所有*，有一些没必要reset的会因此    也去查找，避免耗费资源以后千万记得针对需要的标签做reset就可以，    网络上也有很多reset的样式。
+
+命名规范在写HTML的class时使用-">
+<meta property="og:updated_time" content="2017-02-22T16:05:59.639Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="canvas的几个知识点">
-<meta name="twitter:description" content="今天重新复习了HTML5，对canvas标签理解加深了一点，有几个知识点想记下来以免忘记。
-绘制矩形绘制矩形 context.fillRect(x,y,width,height) strokeRect(x,y,width,height)
-x:矩形起点横坐标（坐标原点为canvas的左上角，当然确切的来说是原始原点，后面写到变形的时候你就懂了，现在暂时不用关系）
-y:矩形起点纵坐标
-width:矩形">
+<meta name="twitter:title" content="轮播图插件封装">
+<meta name="twitter:description" content="之前写了一个轮播图的功能实现，给前辈看了下代码，收获很多。总结了一下自己之前代码的问题和讨论一下jQuery插件封装的套路。
+
+之前代码的坑
+reset style自己在写css时写的reset针对了所有*，有一些没必要reset的会因此    也去查找，避免耗费资源以后千万记得针对需要的标签做reset就可以，    网络上也有很多reset的样式。
+
+命名规范在写HTML的class时使用-">
 
 
 
@@ -136,13 +139,13 @@ width:矩形">
 
 
 
-  <link rel="canonical" href="http://shelia.site/2017/02/20/canvas的几个知识点/"/>
+  <link rel="canonical" href="http://shelia.site/2017/02/22/轮播图插件封装/"/>
 
 
 
 
 
-  <title> canvas的几个知识点 | shelia's blog </title>
+  <title> 轮播图插件封装 | shelia's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -289,7 +292,7 @@ width:矩形">
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://shelia.site/2017/02/20/canvas的几个知识点/">
+  <link itemprop="mainEntityOfPage" href="http://shelia.site/2017/02/22/轮播图插件封装/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="shelia">
@@ -313,7 +316,7 @@ width:矩形">
             
             
               
-                canvas的几个知识点
+                轮播图插件封装
               
             
           </h1>
@@ -328,8 +331,8 @@ width:矩形">
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-20T22:08:14+08:00">
-                2017-02-20
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-22T23:17:04+08:00">
+                2017-02-22
               </time>
             
 
@@ -346,8 +349,8 @@ width:矩形">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/02/20/canvas的几个知识点/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/20/canvas的几个知识点/" itemprop="commentCount"></span>
+                <a href="/2017/02/22/轮播图插件封装/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/22/轮播图插件封装/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -373,32 +376,81 @@ width:矩形">
       
 
       
-        <p>今天重新复习了HTML5，对canvas标签理解加深了一点，有几个知识点想记下来以免忘记。</p>
-<h1 id="绘制矩形"><a href="#绘制矩形" class="headerlink" title="绘制矩形"></a>绘制矩形</h1><p>绘制矩形 context.fillRect(x,y,width,height) strokeRect(x,y,width,height)</p>
-<p>x:矩形起点横坐标（坐标原点为canvas的左上角，当然确切的来说是原始原点，后面写到变形的时候你就懂了，现在暂时不用关系）</p>
-<p>y:矩形起点纵坐标</p>
-<p>width:矩形长度</p>
-<p>height:矩形高度</p>
-<h1 id="绘制圆弧"><a href="#绘制圆弧" class="headerlink" title="绘制圆弧"></a>绘制圆弧</h1><p>圆弧context.arc(x, y, radius, starAngle,endAngle, anticlockwise)</p>
-<p>x:圆心的x坐标</p>
-<p>y:圆心的y坐标</p>
-<p>straAngle:开始角度</p>
-<p>endAngle:结束角度</p>
-<p>anticlockwise:是否逆时针（true）为逆时针，(false)为顺时针</p>
-<p>ps：经过试验证明书本上ture是顺时针，false是逆时针是错误的，而且无论是逆时针还是顺时针，角度都沿着顺时针扩大。</p>
-<h1 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h1><p>这是今天理解的重点。</p>
-<ul>
-<li>系统默认在绘制第一个路径的开始点为beginPath</li>
-<li>如果画完前面的路径没有重新指定beginPath，那么画第其他路径的时候会将前面最近指定的beginPath后的全部路径重新绘制</li>
-<li>每次调用context.fill（）的时候会自动把当次绘制的路径的开始点和结束点相连，接着填充封闭的部分。</li>
-</ul>
-<h1 id="渐变"><a href="#渐变" class="headerlink" title="渐变"></a>渐变</h1><p>1.线性渐变 var lg= context.createLinearGradient(xStart,yStart,xEnd,yEnd)<br>2.线性渐变颜色lg.addColorStop(offset,color)</p>
-<p>xstart:渐变开始点x坐标</p>
-<p>ystart:渐变开始点y坐标</p>
-<p>xEnd:渐变结束点x坐标</p>
-<p>yEnd:渐变结束点y坐标</p>
-<p>offset:设定的颜色离渐变结束点的偏移量(0~1)</p>
-<p>color:绘制时要使用的颜色</p>
+        <blockquote>
+<p>之前写了一个轮播图的功能实现，给前辈看了下代码，收获很多。总结了一下自己之前代码的问题和讨论一下jQuery插件封装的套路。</p>
+</blockquote>
+<h1 id="之前代码的坑"><a href="#之前代码的坑" class="headerlink" title="之前代码的坑"></a>之前代码的坑</h1><ol>
+<li><p>reset style<br>自己在写css时写的reset针对了所有<code>*</code>，有一些没必要reset的会因此    也去查找，避免耗费资源以后千万记得针对需要的标签做reset就可以，    网络上也有很多reset的样式。</p>
+</li>
+<li><p>命名规范<br>在写HTML的class时使用<code>-</code>分割名字，如：<code>class=&quot;nav-box&quot;</code>。<br>写HTML的id时，使用驼峰式命名，如：<code>id=navBox</code>。<br>在JavaScript中，变量同样使用驼峰命名。<br>在JavaScript中，变量对象使用<code>$</code>开头，如：<code>var $el=$(&#39;html&#39;)</code>。<br>函数中的私有变量对象使用下划线开头，如：<code>var _this=$(this)</code>。</p>
+</li>
+<li><p>选择器不能大于3层，选择器是从右到左。</p>
+</li>
+<li><p>css的一些属性一定要记得写兼容。</p>
+</li>
+<li><p>+1或者-1的时候根据需求尽量用自增或自减，减少代码量。</p>
+</li>
+<li><p>使用rgba()函数时要注意兼容IE8<br><code>background: rgba(255,255,255,.1);
+filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#19ffffff,endColorstr=#19ffffff);</code></p>
+</li>
+<li><p>link type=text/css 已经不用写了。</p>
+</li>
+<li><p>还有a标签里放#会直接跳的<br>正确的姿势应该是这样的：<code>href=javascript:;</code></p>
+</li>
+</ol>
+<h1 id="jQuery封装插件"><a href="#jQuery封装插件" class="headerlink" title="jQuery封装插件"></a>jQuery封装插件</h1><p> 为了避免和其他JavaScript库冲突，我们最好将jQuery传递给一个自我执行的封闭程序，jQuery在此程序中映射为$符号，这样可以避免$号被其他库覆写。</p>
+<pre><code>(function($) {
+$.fn.m​​yPlugin = function() {
+    //你自己的插件代码
+};
+</code></pre><p>})(jQuery);</p>
+<p>插件封装的模板如下：</p>
+<pre><code>(function($){ 
+//插件名字
+var pluginName = &quot;myTab&quot;;
+//插件的默认配置
+var defaults = {
+    ....
+}
+
+function Plugin(element,options){
+    this.element = element;
+    /*对于比较复杂的和提供了许多选项可定制的的插件，最好有一个当插件被调用的时候可以被拓展的默认设置(通过使用$.extend)。*/
+this.options = $.extend({},defaults,options);
+
+    this.init();
+}
+
+//初始化方法
+Plugin.prototype.init = function(){
+    ...
+}
+
+//暴露方法
+$.fn[pluginName] = function(options){
+    //保持chainability，这样jQuery收集的元素可以继续被jQuery方法如.css控制
+    return this.each(function(){
+        if(!$.data(this,&apos;plugin_&apos;+pluginName)){
+            $.data(this,&apos;plugin_&apos;+pluginName,new Plugin(this,options));
+        }
+    });
+}
+})(jQuery);
+</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>编写jQuery插件允许你做出库，将最有用的功能集成到可重用的代码，可以节省开发者的时间，使开发更高效。 开发jQuery插件时，要牢记：</p>
+<ol>
+<li><p>始终包裹在一个封闭的插件：</p>
+<p>(function($) {<br>   /<em> plugin goes here </em>/<br>})(jQuery);</p>
+</li>
+<li><p>不要冗余包裹this关键字在插件的功能范围内；</p>
+<p>3.除非插件返回特定值，否则总是返回this关键字来维持chainability；</p>
+</li>
+<li><p>传递一个可拓展的默认对象参数而不是大量的参数给插件；</p>
+</li>
+<li><p>不要在一个插件中多次命名不同方法；</p>
+</li>
+<li><p>始终命名空间的方法，事件和数据；</p>
+</li>
+</ol>
 
       
     </div>
@@ -422,7 +474,7 @@ width:矩形">
       
         <div class="post-tags">
           
-            <a href="/tags/HTML5/" rel="tag"># HTML5</a>
+            <a href="/tags/jQuery/" rel="tag"># jQuery</a>
           
         </div>
       
@@ -435,8 +487,8 @@ width:矩形">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/19/setTimeout在循环中/" rel="next" title="setTimeout在循环中">
-                <i class="fa fa-chevron-left"></i> setTimeout在循环中
+              <a href="/2017/02/20/canvas的几个知识点/" rel="next" title="canvas的几个知识点">
+                <i class="fa fa-chevron-left"></i> canvas的几个知识点
               </a>
             
           </div>
@@ -444,10 +496,6 @@ width:矩形">
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/22/轮播图插件封装/" rel="prev" title="轮播图插件封装">
-                轮播图插件封装 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -462,10 +510,10 @@ width:矩形">
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2017/02/20/canvas的几个知识点/"
-     data-title="canvas的几个知识点"
+        <div class="ds-share flat" data-thread-key="2017/02/22/轮播图插件封装/"
+     data-title="轮播图插件封装"
      data-content=""
-     data-url="http://shelia.site/2017/02/20/canvas的几个知识点/">
+     data-url="http://shelia.site/2017/02/22/轮播图插件封装/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -495,8 +543,8 @@ width:矩形">
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/02/20/canvas的几个知识点/"
-           data-title="canvas的几个知识点" data-url="http://shelia.site/2017/02/20/canvas的几个知识点/">
+      <div class="ds-thread" data-thread-key="2017/02/22/轮播图插件封装/"
+           data-title="轮播图插件封装" data-url="http://shelia.site/2017/02/22/轮播图插件封装/">
       </div>
     
   </div>
@@ -589,7 +637,7 @@ width:矩形">
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#绘制矩形"><span class="nav-number">1.</span> <span class="nav-text">绘制矩形</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#绘制圆弧"><span class="nav-number">2.</span> <span class="nav-text">绘制圆弧</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#路径"><span class="nav-number">3.</span> <span class="nav-text">路径</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#渐变"><span class="nav-number">4.</span> <span class="nav-text">渐变</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#之前代码的坑"><span class="nav-number">1.</span> <span class="nav-text">之前代码的坑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jQuery封装插件"><span class="nav-number">2.</span> <span class="nav-text">jQuery封装插件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">2.1.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
             
 
           </div>
