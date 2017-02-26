@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="AngularJS," />
+  <meta name="keywords" content="jQuery," />
 
 
 
@@ -87,28 +87,25 @@
 
 
 
-<meta name="description" content="本文摘录自玩转AngularJS的作用域
+<meta name="description" content="这篇文章介绍了自己在学习jQuery中不太明白的几个事件，以便加深理解。
 
-每当一个指令被创建时，都会有一个选择，是继承自己的父作用域还是创建一个新的自己的作用域。AngularJS指令的作用域有三种选择，分别是false，true，{}，默认情况下是false。
-scope = false这种情况表示，在指令模板中直接使用父作用域中的变量。当我们在指令更改父作用域的方法和属性，父作用域绑定的数据也发生了响应的变化。
-scop">
+$(function(){})这个函数是$(document).ready()的简写，把代码放在里面是为了在页面内容都加载完成后再执行，避免在js中调用了还没加载好的dom而出现错误。但是，有的时候会使页面跳动，很多jQuery插件都是在加载完成后才改变样式的，页面会有跳动或闪动的感觉。
+事件对象我们常常需要获取正在执行">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AngularJS学习笔记二">
-<meta property="og:url" content="http://shelia.site/2017/02/14/AngularJS学习笔记二/index.html">
+<meta property="og:title" content="jQuery中的常用事件">
+<meta property="og:url" content="http://shelia.site/2017/02/23/jQuery中的常用事件/index.html">
 <meta property="og:site_name" content="shelia's blog">
-<meta property="og:description" content="本文摘录自玩转AngularJS的作用域
+<meta property="og:description" content="这篇文章介绍了自己在学习jQuery中不太明白的几个事件，以便加深理解。
 
-每当一个指令被创建时，都会有一个选择，是继承自己的父作用域还是创建一个新的自己的作用域。AngularJS指令的作用域有三种选择，分别是false，true，{}，默认情况下是false。
-scope = false这种情况表示，在指令模板中直接使用父作用域中的变量。当我们在指令更改父作用域的方法和属性，父作用域绑定的数据也发生了响应的变化。
-scop">
-<meta property="og:updated_time" content="2017-02-13T16:01:29.003Z">
+$(function(){})这个函数是$(document).ready()的简写，把代码放在里面是为了在页面内容都加载完成后再执行，避免在js中调用了还没加载好的dom而出现错误。但是，有的时候会使页面跳动，很多jQuery插件都是在加载完成后才改变样式的，页面会有跳动或闪动的感觉。
+事件对象我们常常需要获取正在执行">
+<meta property="og:updated_time" content="2017-02-23T14:37:54.255Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AngularJS学习笔记二">
-<meta name="twitter:description" content="本文摘录自玩转AngularJS的作用域
+<meta name="twitter:title" content="jQuery中的常用事件">
+<meta name="twitter:description" content="这篇文章介绍了自己在学习jQuery中不太明白的几个事件，以便加深理解。
 
-每当一个指令被创建时，都会有一个选择，是继承自己的父作用域还是创建一个新的自己的作用域。AngularJS指令的作用域有三种选择，分别是false，true，{}，默认情况下是false。
-scope = false这种情况表示，在指令模板中直接使用父作用域中的变量。当我们在指令更改父作用域的方法和属性，父作用域绑定的数据也发生了响应的变化。
-scop">
+$(function(){})这个函数是$(document).ready()的简写，把代码放在里面是为了在页面内容都加载完成后再执行，避免在js中调用了还没加载好的dom而出现错误。但是，有的时候会使页面跳动，很多jQuery插件都是在加载完成后才改变样式的，页面会有跳动或闪动的感觉。
+事件对象我们常常需要获取正在执行">
 
 
 
@@ -136,13 +133,13 @@ scop">
 
 
 
-  <link rel="canonical" href="http://shelia.site/2017/02/14/AngularJS学习笔记二/"/>
+  <link rel="canonical" href="http://shelia.site/2017/02/23/jQuery中的常用事件/"/>
 
 
 
 
 
-  <title> AngularJS学习笔记二 | shelia's blog </title>
+  <title> jQuery中的常用事件 | shelia's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -289,7 +286,7 @@ scop">
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://shelia.site/2017/02/14/AngularJS学习笔记二/">
+  <link itemprop="mainEntityOfPage" href="http://shelia.site/2017/02/23/jQuery中的常用事件/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="shelia">
@@ -313,7 +310,7 @@ scop">
             
             
               
-                AngularJS学习笔记二
+                jQuery中的常用事件
               
             
           </h1>
@@ -328,8 +325,8 @@ scop">
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-14T00:10:56+08:00">
-                2017-02-14
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-23T21:52:00+08:00">
+                2017-02-23
               </time>
             
 
@@ -346,8 +343,8 @@ scop">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/02/14/AngularJS学习笔记二/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/14/AngularJS学习笔记二/" itemprop="commentCount"></span>
+                <a href="/2017/02/23/jQuery中的常用事件/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/23/jQuery中的常用事件/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -374,49 +371,40 @@ scop">
 
       
         <blockquote>
-<p>本文摘录自<a href="https://segmentfault.com/a/1190000002773689" target="_blank" rel="external">玩转AngularJS的作用域</a></p>
+<p>这篇文章介绍了自己在学习jQuery中不太明白的几个事件，以便加深理解。</p>
 </blockquote>
-<p>每当一个指令被创建时，都会有一个选择，是继承自己的父作用域还是创建一个新的自己的作用域。AngularJS指令的作用域有三种选择，分别是false，true，{}，默认情况下是false。</p>
-<h1 id="scope-false"><a href="#scope-false" class="headerlink" title="scope = false"></a>scope = false</h1><p>这种情况表示，在指令模板中直接使用父作用域中的变量。<br>当我们在指令更改父作用域的方法和属性，父作用域绑定的数据也发生了响应的变化。</p>
-<h1 id="scope-true"><a href="#scope-true" class="headerlink" title="scope = true"></a>scope = true</h1><p>当把scope属性设置为true时，这表明我们创建的指令要创建一个新的作用域，这个作用域继承自我们的父作用域。但是改变指令内的数据，只有指令的作用域发生了变化，父作用域数据并没有发生变化</p>
-<ul>
-<li>当我们将scope设置为true的时候，我们就新创建了一个作用域，只不过这个作用域是继承了我们的父作用域；我觉得可以这样理解，我们新创建的作用域是一个新的作用域，只不过在初始化的时候，用了父作用域的属性和方法去填充我们这个新的作用域。它和父作用域不是同一个作用域。</li>
-<li>当我们将scope设置为false的时候,我们创建的指令和父作用域（其实是同一个作用域）共享同一个model模型，所以在指令中修改模型数据，它会反映到父作用域的模型中。</li>
-</ul>
-<p>这就是两者继承父作用域的区别。</p>
-<h1 id="scope"><a href="#scope" class="headerlink" title="scope={}"></a>scope={}</h1><p>我们将scope设置为{}时，意味着我们创建的一个新的与父作用域隔离的新的作用域，这使我们在不知道外部环境的情况下，就可以正常工作，不依赖外部环境。</p>
-<p>实例代码如下：</p>
-<pre><code>    angular.module(&quot;MyApp&quot;, [])
-    .controller(&quot;MyController&quot;, function ($scope) {
-    $scope.name = &quot;dreamapple&quot;;
-    $scope.age = 20;
-    $scope.changeAge = function(){
-        $scope.age = 0;
-    }
+<h1 id="function"><a href="#function" class="headerlink" title="$(function(){})"></a>$(function(){})</h1><p>这个函数是<code>$(document).ready()</code>的简写，把代码放在里面是为了在页面内容都加载完成后再执行，避免在js中调用了还没加载好的dom而出现错误。但是，有的时候会使页面跳动，很多jQuery插件都是在加载完成后才改变样式的，页面会有跳动或闪动的感觉。</p>
+<h1 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h1><p>我们常常需要获取正在执行事件的对象。在程序中使用事件对象非常简单，如下：</p>
+<pre><code>$(&apos;element&apos;).click(function(event){
+//event:事件对象
 })
-    .directive(&quot;myDirective&quot;, function () {
-    var obj = {
-        restrict: &quot;AE&quot;,
-        scope: {
-            name: &apos;@myName&apos;,
-            age: &apos;=&apos;,
-            changeAge: &apos;&amp;changeMyAge&apos;
-        },
-        replace: true,
-        template: &quot;&lt;div class=&apos;my-directive&apos;&gt;&quot; +
-            &quot;&lt;h3&gt;下面部分是我们创建的指令生成的&lt;/h3&gt;&quot; +
-            &quot;我的名字是：&lt;span ng-bind=&apos;name&apos;&gt;&lt;/span&gt;&lt;br/&gt;&quot; +
-            &quot;我的年龄是：&lt;span ng-bind=&apos;age&apos;&gt;&lt;/span&gt;&lt;br/&gt;&quot; +
-            &quot;在这里修改名字：&lt;input type=&apos;text&apos; ng-model=&apos;name&apos;&gt;&lt;br/&gt;&quot; +
-            &quot;&lt;button ng-click=&apos;changeAge()&apos;&gt;修改年龄&lt;/button&gt;&quot; +
-            &quot; &lt;/div&gt;&quot;
-    }
-    return obj;
-});
-</code></pre><p>我们使用了隔离的作用域，不代表我们不可以使用父作用域的属性和方法。我们可以通过向scope的{}中传入特殊的前缀标识符（即prefix），来进行数据的绑定。在创建了隔离的作用域，我们可以通过@,&amp;,=引用应用指令的元素的属性。但是注意要使用驼峰命名法。</p>
-<h2 id=""><a href="#" class="headerlink" title="@"></a>@</h2><p>这是一个单项绑定的前缀标识符。<br>使用方法：在元素中使用属性，好比这样<code>&lt;div my-directive my-name=&quot;&quot;&gt;&lt;/div&gt;</code>，注意，属性的名字要用-将两个单词连接，因为是数据的单项绑定所以要通过使用两个大括号来绑定数据。</p>
-<h2 id="amp"><a href="#amp" class="headerlink" title="&amp;"></a>&amp;</h2><p>这是一个双向数据绑定前缀标识符。<br>使用方法：在元素中使用属性，好比这样<code>&lt;div my-directive age=&quot;age&quot;&gt;&lt;/div&gt;</code>,注意，数据的双向绑定要通过=前缀标识符实现，所以不可以使用两个大括号。</p>
-<h2 id="-1"><a href="#-1" class="headerlink" title="="></a>=</h2><p>这是一个绑定函数方法的前缀标识符<br>使用方法：在元素中使用属性，好比这样<code>&lt;div my-directive change-my-age=&quot;changeAge()&quot;&gt;&lt;/div&gt;</code>，注意，属性的名字要用<code>-</code>将多个个单词连接。</p>
+</code></pre><p>当点击’element’元素时候，事件对象就被创建了。这个对象只有事件处理函数能访问。当事件处理函数执行完毕，事件对象就被销毁了。</p>
+<p>事件处理程序中event保存着事件对象。而event.tatget属性保存着发生事件的目标元素。通过.target，可以确定DOM中首先接收到事件的元素。而且，我们知道this引用的是处理事件的DOM元素。</p>
+<p><strong>因为事件会冒泡，this不一定是event.target</strong></p>
+<h1 id="合成事件"><a href="#合成事件" class="headerlink" title="合成事件"></a>合成事件</h1><p>在进行事件捕获时常常需要捕获组合的用户操作，并且以多个函数来响应。</p>
+<h2 id="toggle"><a href="#toggle" class="headerlink" title="toggle()"></a>toggle()</h2><p>在w3school中可以看到定义如下：<br>toggle() 方法用于绑定两个或多个事件处理器函数，以响应被选元素的轮流的 click 事件。<br>该方法也可用于切换被选元素的 hide() 与 show() 方法。</p>
+<h2 id="hover"><a href="#hover" class="headerlink" title="hover()"></a>hover()</h2><p>.hover(enter,leave)一个模仿悬停事件，当鼠标移动到对象时执行第一个参数函数，当鼠标移出对象时执行第二个参数函数。</p>
+<h1 id="事件绑定"><a href="#事件绑定" class="headerlink" title="事件绑定"></a>事件绑定</h1><p>事件绑定方法主要有四种：bind(),live(),delegate(),on()</p>
+<h2 id="bind-与unbind"><a href="#bind-与unbind" class="headerlink" title="bind()与unbind()"></a>bind()与unbind()</h2><p>在w3scholl中定义如下：<br><code>$(selector).bind(event,data,function)</code></p>
+<p>参数和描述：<br>event：必需。规定添加到元素的一个或多个事件。由空格分隔多个事件。必须是有效的事件。<br>data 可选。规定传递到函数的额外数据。<br>function 必需。规定当事件发生时运行的函数。<br>对应的有unbind()：移除事件<br>示例：<code>$(‘#idchoose&#39;).unbind(“click”,Function_Name)</code></p>
+<p>其它的事件绑定函数使用方式都是大同小异的，最重要是理解这四个之间的异同。</p>
+<ul>
+<li>相同点：</li>
+</ul>
+<p>　　 1. 都支持单元素多事件的绑定；空格相隔方式或者大括号替代方式<br>　　 2. 均是通过事件冒泡方式，将事件传递到document进行事件的响应</p>
+<ol>
+<li><p>区别</p>
+<ol>
+<li>bind()函数只能针对已经存在的元素进行事件的设置；但是live(),on(),delegate()均支持未来新添加元素的事件设置</li>
+</ol>
+</li>
+<li><p>bind()函数在jquery1.7版本以前比较受推崇，1.7版本出来之后，官方已经不推荐用bind()，替代函数为on(),这也是1.7版本新添加的函数，同样，可以用来代替live()函数，live()函数在1.9版本已经删除</p>
+</li>
+<li><p>live()函数和delegate()函数两者类似，但是live()函数在执行速度，灵活性和CSS选择器支持方面较delegate()差些。</p>
+</li>
+<li><p>.bind()支持Jquery所有版本；live()支持jquery1.8-；delegate()支持jquery1.4.2+；on()支持jquery1.7+；　</p>
+</li>
+</ol>
 
       
     </div>
@@ -440,7 +428,7 @@ scop">
       
         <div class="post-tags">
           
-            <a href="/tags/AngularJS/" rel="tag"># AngularJS</a>
+            <a href="/tags/jQuery/" rel="tag"># jQuery</a>
           
         </div>
       
@@ -453,8 +441,8 @@ scop">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/14/js双重否定的小知识点/" rel="next" title="js中`!!`的小知识点">
-                <i class="fa fa-chevron-left"></i> js中`!!`的小知识点
+              <a href="/2017/02/22/轮播图插件封装/" rel="next" title="轮播图插件封装">
+                <i class="fa fa-chevron-left"></i> 轮播图插件封装
               </a>
             
           </div>
@@ -462,10 +450,6 @@ scop">
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/16/Less学习笔记一/" rel="prev" title="Less学习笔记一">
-                Less学习笔记一 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -480,10 +464,10 @@ scop">
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2017/02/14/AngularJS学习笔记二/"
-     data-title="AngularJS学习笔记二"
+        <div class="ds-share flat" data-thread-key="2017/02/23/jQuery中的常用事件/"
+     data-title="jQuery中的常用事件"
      data-content=""
-     data-url="http://shelia.site/2017/02/14/AngularJS学习笔记二/">
+     data-url="http://shelia.site/2017/02/23/jQuery中的常用事件/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -513,8 +497,8 @@ scop">
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/02/14/AngularJS学习笔记二/"
-           data-title="AngularJS学习笔记二" data-url="http://shelia.site/2017/02/14/AngularJS学习笔记二/">
+      <div class="ds-thread" data-thread-key="2017/02/23/jQuery中的常用事件/"
+           data-title="jQuery中的常用事件" data-url="http://shelia.site/2017/02/23/jQuery中的常用事件/">
       </div>
     
   </div>
@@ -607,7 +591,7 @@ scop">
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#scope-false"><span class="nav-number">1.</span> <span class="nav-text">scope = false</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#scope-true"><span class="nav-number">2.</span> <span class="nav-text">scope = true</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#scope"><span class="nav-number">3.</span> <span class="nav-text">scope={}</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">3.1.</span> <span class="nav-text">@</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#amp"><span class="nav-number">3.2.</span> <span class="nav-text">&</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#-1"><span class="nav-number">3.3.</span> <span class="nav-text">=</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#function"><span class="nav-number">1.</span> <span class="nav-text">$(function(){})</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事件对象"><span class="nav-number">2.</span> <span class="nav-text">事件对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#合成事件"><span class="nav-number">3.</span> <span class="nav-text">合成事件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#toggle"><span class="nav-number">3.1.</span> <span class="nav-text">toggle()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hover"><span class="nav-number">3.2.</span> <span class="nav-text">hover()</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事件绑定"><span class="nav-number">4.</span> <span class="nav-text">事件绑定</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#bind-与unbind"><span class="nav-number">4.1.</span> <span class="nav-text">bind()与unbind()</span></a></li></ol></li></ol></div>
             
 
           </div>
