@@ -4,15 +4,15 @@
 
 # Site
 title: shelia's blog
-subtitle: 学习笔记
-description: Actions do lead
+subtitle: 前端 杂记
+description: 你看啥，还不快打钱
 author: shelia
 language: zh-Hans
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://shelia.site
+url: http://shelia.site/blog/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -61,7 +61,7 @@ per_page: 5
 pagination_dir: page
 
 #fonts
-avatar: /uploads/avatar.png
+avatar: /uploads/favicon.jpg
 
 #duoshuo_shortname
 duoshuo_shortname: shelia
@@ -83,7 +83,7 @@ leancloud_visitors:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: next
+theme: yilia
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
