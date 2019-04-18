@@ -5,14 +5,14 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="dns-prefetch" href="http://www.kalli.cn">
+  <link rel="dns-prefetch" href="https://SheliaWu.github.io">
   <title>函数柯里化 | shelia&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="最近在看阮一峰的《ES6入门》，在尾调用扩展中提到了函数柯里化。  一、什么是尾调用尾调用是函数式编程的一个概念，就是某个函数的最后一步是调用另一个函数。尾调用不一定出现在函数尾部，只要在最后一步操作即可。 尾调用很特殊，函数调用会在内存中有一个调用帧，保存调用位置和内部变量等信息，函数嵌套调用形成一个调用栈。尾调用由于函数是最后一步操作，所以不需要保留外层函数的调用帧，因为调用位置，内部变量等">
 <meta name="keywords" content="ES6">
 <meta property="og:type" content="article">
 <meta property="og:title" content="函数柯里化">
-<meta property="og:url" content="http://www.kalli.cn/2018/03/26/函数柯里化/index.html">
+<meta property="og:url" content="https://SheliaWu.github.io/2018/03/26/函数柯里化/index.html">
 <meta property="og:site_name" content="shelia&#39;s blog">
 <meta property="og:description" content="最近在看阮一峰的《ES6入门》，在尾调用扩展中提到了函数柯里化。  一、什么是尾调用尾调用是函数式编程的一个概念，就是某个函数的最后一步是调用另一个函数。尾调用不一定出现在函数尾部，只要在最后一步操作即可。 尾调用很特殊，函数调用会在内存中有一个调用帧，保存调用位置和内部变量等信息，函数嵌套调用形成一个调用栈。尾调用由于函数是最后一步操作，所以不需要保留外层函数的调用帧，因为调用位置，内部变量等">
 <meta property="og:locale" content="zh-Hans">
@@ -186,9 +186,9 @@
 <p>尾调用很特殊，函数调用会在内存中有一个调用帧，保存调用位置和内部变量等信息，函数嵌套调用形成一个调用栈。尾调用由于函数是最后一步操作，所以不需要保留外层函数的调用帧，因为调用位置，内部变量等不会再用到了。</p>
 <h1 id="二、尾调用和尾递归"><a href="#二、尾调用和尾递归" class="headerlink" title="二、尾调用和尾递归"></a>二、尾调用和尾递归</h1><p>函数调用本身叫做递归，尾调用自身就称为尾递归。递归由于需要保存很多个调用帧很容易发生栈溢出，但是对于尾递归来说，由于只存在一个调用栈所以不会发生栈溢出。 </p>
 <h1 id="三、尾递归的实现"><a href="#三、尾递归的实现" class="headerlink" title="三、尾递归的实现"></a>三、尾递归的实现</h1><p>终于要讲到函数柯里化(curring)。尾递归的实现往往是从递归函数改写而来的，改写的步骤就是把所有用到的内部变量改写成函数的参数。在递归函数改写成尾递归函数这里，没有函数柯里化什么事，函数柯里化是在尾递归改写完成后将多参数改写成单参数。先解释下柯里化的意思，指将多参数函数改写成单参数形式。</p>
-<p>根据张鑫旭的博文<a href="http://www.zhangxinxu.com/wordpress/2013/02/js-currying/" target="_blank" rel="external">JS中的柯里化</a>中写道柯里化主要有三个作用：1.参数服用；2.提前返回；3.延迟计算/运行。</p>
-<p>在本书中，关于柯里化的代码解释如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">currying</span>(<span class="params">fn,n</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">m</span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> fn.call(<span class="keyword">this</span>,m,n);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">tailFactorial</span>(<span class="params">n, total</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(n === <span class="number">1</span>) <span class="keyword">return</span> total;</div><div class="line">    <span class="keyword">return</span> tailFactorial(n<span class="number">-1</span>, n*total);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> factorial = curring(tailFactorial, <span class="number">1</span>);</div><div class="line"></div><div class="line">factorial(<span class="number">5</span>) <span class="comment">//120</span></div></pre></td></tr></table></figure></p>
-<p>上面是一种笨拙的方法，这里，n指尾递归函数的参数默认值,m是尾递归参数真正的参数。以上代码将阶乘尾递归函数tailFactorial变成只接受一个参数的factorial.<br>同时，利用ES6的函数默认值也能实现上面的函数柯里化：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">n, total=<span class="number">1</span></span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(n === <span class="number">1</span>) <span class="keyword">return</span> total;</div><div class="line">    <span class="keyword">return</span> factorial(n, n*total);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>根据张鑫旭的博文<a href="http://www.zhangxinxu.com/wordpress/2013/02/js-currying/" target="_blank" rel="noopener">JS中的柯里化</a>中写道柯里化主要有三个作用：1.参数服用；2.提前返回；3.延迟计算/运行。</p>
+<p>在本书中，关于柯里化的代码解释如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">currying</span>(<span class="params">fn,n</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">m</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> fn.call(<span class="keyword">this</span>,m,n);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tailFactorial</span>(<span class="params">n, total</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n === <span class="number">1</span>) <span class="keyword">return</span> total;</span><br><span class="line">    <span class="keyword">return</span> tailFactorial(n<span class="number">-1</span>, n*total);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> factorial = curring(tailFactorial, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">factorial(<span class="number">5</span>) <span class="comment">//120</span></span><br></pre></td></tr></table></figure></p>
+<p>上面是一种笨拙的方法，这里，n指尾递归函数的参数默认值,m是尾递归参数真正的参数。以上代码将阶乘尾递归函数tailFactorial变成只接受一个参数的factorial.<br>同时，利用ES6的函数默认值也能实现上面的函数柯里化：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">n, total=<span class="number">1</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n === <span class="number">1</span>) <span class="keyword">return</span> total;</span><br><span class="line">    <span class="keyword">return</span> factorial(n, n*total);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
 
@@ -279,7 +279,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://www.kalli.cn/2018/03/26/函数柯里化/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://SheliaWu.github.io/2018/03/26/函数柯里化/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -434,6 +434,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Bootstrap 响应式开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -442,19 +446,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Bootstrap 响应式开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">HTML5</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Ajax</a>
+                <a href="javascript:void(0)" class="js-tag color2">jQuery</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">jQuery</a>
+                <a href="javascript:void(0)" class="js-tag color5">Ajax</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -466,19 +466,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">xss</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
               </li>
              
               <li class="article-tag-list-item">
